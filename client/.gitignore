@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Udemy Student Assets Files
+StudentAssets/
+
+# Self-Signed SSL Certificate
+ssl/
