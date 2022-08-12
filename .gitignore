@@ -457,3 +457,6 @@ appsettings.json
 
 StudentAssets.zip
 StudentAssets/
+
+*.db-shm 
+*.db-wal
