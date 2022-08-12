@@ -18,13 +18,13 @@ export class AppComponent implements OnInit {
 
   // this subscribe() method has been deprecated and may produce warnings
   // get weatherforecast basketball players from dapper-demo test-service
-  // getUsers() {
-  //   this.http.get('http://localhost:5000/weatherforecast').subscribe(response => {
-  //     this.users = response;
-  //   }, error => {
-  //     console.log(error);
-  //   })
-  // }
+  getUsers() {
+    this.http.get('http://localhost:6000/weather').subscribe(response => {
+      this.users = response;
+    }, error => {
+      console.log(error);
+    })
+  }
 
   // this subscribe() method has been deprecated and may produce warnings
   // get api/users, dating app project
@@ -37,10 +37,10 @@ export class AppComponent implements OnInit {
   // }
 
   // non-deprecated observer pattern for subscribe method
-  getUsers() {
-    this.http.get('https://localhost:5003/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error)
-    })
-  }
+  // getUsers() {
+  //   this.http.get('https://localhost:5003/api/users').subscribe({
+  //     next: response => this.users = response,
+  //     error: error => console.log(error)
+  //   })
+  // }
 }
