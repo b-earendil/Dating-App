@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +12,32 @@ export class AppComponent implements OnInit {
   title = 'The Dating App';
   users: any; // remove type safety
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private accountService: AccountService) {}
 
   ngOnInit() {
     this.getUsers();
+    this.setCurrentUser();
   }
 
-  // this subscribe() method has been deprecated and may produce warnings
-  // getUsers() {
-  //   this.http.get('https://localhost:5001/api/users').subscribe(response => {
-  //     this.users = response;
-  //   }, error => {
-  //     console.log(error);
-  //   })
-  // }
+  setCurrentUser() {
+    const user: User = JSON.parse(localStorage.getItem('user')); // unstringify with parse
+    this.accountService.setCurrentUser(user);
+  }
 
-  // non-deprecated observer pattern for subscribe method
   getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error)
+    this.http.get('https://localhost:5001/api/users').subscribe(response => {
+      this.users = response;
+    }, error => {
+      console.log(error);
     })
   }
 }
+
+  // non-deprecated observer pattern for subscribe method
+//   getUsers() {
+//     this.http.get('https://localhost:5001/api/users').subscribe({
+//       next: response => this.users = response,
+//       error: error => console.log(error)
+//     })
+//   }
+// }
